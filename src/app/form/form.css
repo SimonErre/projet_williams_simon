@@ -1,0 +1,112 @@
+.form-container {
+  max-width: 600px;
+  width: 600px;
+  margin: 20px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  color: #333;
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-container:hover {
+  transform: translateY(-5px);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 25px; /* enough space for absolute error msg */
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  background: #fdfdfd;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+input:focus {
+  background: #fff;
+  border-color: #e52e71;
+  box-shadow: 0 0 8px rgba(229, 46, 113, 0.2);
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(229, 46, 113, 0.3);
+}
+
+button:hover:not(:disabled) {
+  background: linear-gradient(90deg, #e52e71, #ff8a00);
+  box-shadow: 0 6px 20px rgba(229, 46, 113, 0.5);
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background: #eee;
+  color: #aaa;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: #ff4757;
+  background: rgba(255, 71, 87, 0.05);
+}
+
+.error-msg {
+  color: #ff4757;
+  font-size: 0.8em;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  font-weight: 500;
+  animation: slideIn 0.3s ease-out;
+  white-space: nowrap;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
