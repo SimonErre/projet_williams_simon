@@ -1,73 +1,59 @@
-# **Sujet de Projet — Application de recensement et gestion des pollutions**
+# ProjetWilliamsSimon
 
-## Cahier de Charges du projet Web
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
 
-Dans le cadre de ce projet, vous allez concevoir et développer une application web full-stack permettant de recenser, visualiser et gérer des pollutions observées sur le terrain : pollution plastique, chimique, sonore, visuelle, etc.
+## Development server
 
-L’objectif est de mettre en pratique vos compétences en développement web moderne avec :
+To start a local development server, run:
 
-- Angular pour le front-end,
-- Node.js et Express pour le back-end,
-- Une base de données PostgreSQL,
-- Une authentification sécurisée par JWT,
-- Un store NGXS pour gérer l’état global côté front.
+```bash
+ng serve
+```
 
-### Fonctionnalités attendues
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-- Formulaire de création d’une nouvelle pollution :
-  - Type de pollution,
-  - Localisation (ex : coordonnées GPS ou adresse),
-  - Photo (upload),
-  - Description,
-  - Identité du découvreur.
-- Gestion des favoris
-- Fiche détaillée pour chaque pollution.
-- Inscription (Sign up) d’un utilisateur
-- Authentification : login/logout avec JWT (Sign in).
-- Gestion de l’état de la connexion avec NGXS
-- Modification et suppression d’une pollution.
-- Liste des pollutions recensées.
-- Recherche d’une pollution.
+## Code scaffolding
 
-### Contraintes techniques
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-- Code sur GitHub.
-- Déploiement via Docker sur Render.com.
+```bash
+ng generate component component-name
+```
 
-### L’évaluation prendra en compte :
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-- Le respect de la procédure
-- Le respect des délais
-- La qualité du code
-- La sécurité du code
-- Le périmètre fonctionnel couvert
-- Le respect de l’architecture
-- L’ergonomie et la qualité de l’interface
-- Le nombre de TP livrés
-- La posture Tech Lead
-- Le nombre de démos effectués
+```bash
+ng generate --help
+```
 
-### Procédure de Livraison :
+## Building
 
-Créer un repo GITHUB nommé **projet_nom_prenom**
-Push les sources de votre projet dans ce repo (branche main)
+To build the project run:
 
-Par mail :
-Objet : **PROJET – NOM – Prenom**
-Contenu :
+```bash
+ng build
+```
 
-- Lien vers le repository GITHUB (public) contenant un dossier « Front » et un dossier « api »
-- Lien vers l’application hébergée sur RENDER
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-_Objet : PROJET - Dupont - Alice_
-_Bonjour,_
-_Veuillez trouver ci-dessous les liens de livraison pour mon projet :_
-_URL front Render.com :_
-*https://mon-projet-front.onrender.com*
-_URL dépôt GitHub :_
-*https://github.com/projet-dupont-alice*
-_Cordialement,_
+## Running unit tests
 
-### Rappel
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
-Ce projet est individuel. Il est obligatoire pour valider le module.
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
