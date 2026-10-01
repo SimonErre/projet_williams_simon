@@ -1,0 +1,56 @@
+<div class="form-container">
+  <h2>{{ titre }}</h2>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    
+    <div class="form-group">
+      <label for="login">Login :</label>
+      <input type="text" id="login" name="login" [(ngModel)]="user.login" required minlength="3" #login="ngModel">
+      @if (login.invalid && (login.dirty || login.touched)) {
+        <div class="error-msg">Le login est requis (minimum 3 caractères).</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe :</label>
+      <input type="password" id="password" name="password" [(ngModel)]="user.password" required minlength="6" #password="ngModel">
+      @if (password.invalid && (password.dirty || password.touched)) {
+        <div class="error-msg">Le mot de passe est requis (minimum 6 caractères).</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirmation du mot de passe :</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="user.confirmPassword" required #confirmPassword="ngModel">
+      @if (user.password !== user.confirmPassword && (confirmPassword.dirty || confirmPassword.touched)) {
+        <div class="error-msg">Les mots de passe ne correspondent pas.</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" [(ngModel)]="user.nom" required minlength="2" #nom="ngModel">
+      @if (nom.invalid && (nom.dirty || nom.touched)) {
+        <div class="error-msg">Le nom est requis (minimum 2 caractères).</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" [(ngModel)]="user.prenom" required minlength="2" #prenom="ngModel">
+      @if (prenom.invalid && (prenom.dirty || prenom.touched)) {
+        <div class="error-msg">Le prénom est requis (minimum 2 caractères).</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" [(ngModel)]="user.email" required email #email="ngModel">
+      @if (email.invalid && (email.dirty || email.touched)) {
+        <div class="error-msg">Une adresse email valide est requise.</div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="!userForm.form.valid || user.password !== user.confirmPassword">S'inscrire</button>
+
+  </form>
+</div>
