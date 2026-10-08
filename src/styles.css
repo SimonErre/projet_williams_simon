@@ -18,3 +18,17 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #1e3c72;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #e52e71;
+  text-decoration: underline;
+}
