@@ -42,7 +42,12 @@ export class Form {
       next: (response) => {
         this.isLoading = false;
         this.successMessage = 'Inscription réussie !';
-        this.responseResult = response;
+        if (response && typeof response === 'object') {
+          const { password, confirmPassword, ...safeResponse } = response;
+          this.responseResult = safeResponse;
+        } else {
+          this.responseResult = response;
+        }
       },
       error: (error) => {
         this.isLoading = false;
@@ -50,11 +55,17 @@ export class Form {
           error?.error?.message ||
           error?.message ||
           "Une erreur est survenue lors de l'inscription.";
-        this.responseResult = error?.error || {
+        const errObj = error?.error || {
           status: error?.status,
           statusText: error?.statusText,
           message: error?.message,
         };
+        if (errObj && typeof errObj === 'object') {
+          const { password, confirmPassword, ...safeErr } = errObj;
+          this.responseResult = safeErr;
+        } else {
+          this.responseResult = errObj;
+        }
       },
     });
   }
