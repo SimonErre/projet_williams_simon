@@ -3,15 +3,21 @@
   <div class="recap-details">
     <p><strong>Titre :</strong> {{ pollutionData.titre }}</p>
     <p><strong>Type :</strong> {{ pollutionData.type }}</p>
-    <p><strong>Date :</strong> {{ pollutionData.date | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Date :</strong> {{ pollutionData.date | date: 'dd/MM/yyyy' }}</p>
     <p><strong>Lieu :</strong> {{ pollutionData.lieu }}</p>
-    <p><strong>Coordonnées :</strong> {{ pollutionData.latitude }}, {{ pollutionData.longitude }}</p>
+    <p>
+      <strong>Coordonnées :</strong> {{ pollutionData.latitude }}, {{ pollutionData.longitude }}
+    </p>
     <p><strong>Description :</strong></p>
     <p class="description">{{ pollutionData.description }}</p>
   </div>
   @if (pollutionData.photo) {
     <div class="photo-container">
-      <img [src]="pollutionData.photo" alt="Photo de la pollution" class="pollution-photo">
+      <img [src]="pollutionData.photo" alt="Photo de la pollution" class="pollution-photo" />
     </div>
   }
+
+  <div class="recap-actions">
+    <a routerLink="/pollutions" class="btn-list">Voir la liste des pollutions</a>
+  </div>
 </div>

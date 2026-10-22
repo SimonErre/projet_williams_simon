@@ -12,8 +12,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .recap-container h2 {
@@ -49,4 +55,27 @@
   max-width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.recap-actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.btn-list {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(229, 46, 113, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-list:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 46, 113, 0.5);
 }

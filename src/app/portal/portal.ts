@@ -6,6 +6,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './portal.html',
-  styleUrl: './portal.css'
+  styleUrl: './portal.css',
 })
 export class Portal {}

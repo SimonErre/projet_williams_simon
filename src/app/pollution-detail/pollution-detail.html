@@ -1,0 +1,58 @@
+<div class="detail-container">
+  <div class="top-nav">
+    <a routerLink="/pollutions" class="back-link">← Retour à la liste</a>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <p>Chargement des détails...</p>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="error-state">
+      <p>{{ errorMessage() }}</p>
+      <a routerLink="/pollutions" class="btn-return">Revenir aux signalements</a>
+    </div>
+  } @else if (pollution(); as item) {
+    <div class="detail-card">
+      <div class="detail-header">
+        <div class="header-badges">
+          <span class="type-badge">{{ item.type }}</span>
+          <span class="date-badge">Observé le {{ item.date | date: 'dd/MM/yyyy' }}</span>
+        </div>
+        <h2>{{ item.titre }}</h2>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-block">
+          <span class="info-label">📍 Lieu :</span>
+          <span class="info-value">{{ item.lieu }}</span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">🌐 Coordonnées GPS :</span>
+          <span class="info-value">{{ item.latitude }}° N, {{ item.longitude }}° E</span>
+        </div>
+      </div>
+
+      <div class="description-section">
+        <h3>Description</h3>
+        <p class="description-text">{{ item.description }}</p>
+      </div>
+
+      @if (item.photo) {
+        <div class="photo-section">
+          <h3>Photo du signalement</h3>
+          <div class="image-wrapper">
+            <img [src]="item.photo" [alt]="item.titre" class="detail-photo" />
+          </div>
+        </div>
+      }
+
+      <div class="detail-actions">
+        <a [routerLink]="['/pollutions/edit', item.id]" class="btn-edit"> ✏️ Modifier </a>
+        <button type="button" (click)="deleteCurrentPollution()" class="btn-delete">
+          🗑️ Supprimer
+        </button>
+      </div>
+    </div>
+  }
+</div>

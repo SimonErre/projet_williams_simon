@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class Form {
   titre = 'Composant form';
-  
+
   private router = inject(Router);
 
   user = {
@@ -19,10 +19,12 @@ export class Form {
     confirmPassword: '',
     nom: '',
     prenom: '',
-    email: ''
+    email: '',
   };
 
   onSubmit() {
-    this.router.navigate(['/home'], { queryParams: { prenom: this.user.prenom, nom: this.user.nom } });
+    this.router.navigate(['/home'], {
+      queryParams: { prenom: this.user.prenom, nom: this.user.nom },
+    });
   }
 }

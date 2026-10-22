@@ -1,0 +1,178 @@
+.detail-container {
+  max-width: 750px;
+  width: 95%;
+  margin: 30px auto;
+  padding: 35px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  color: #333;
+  box-sizing: border-box;
+}
+
+.top-nav {
+  margin-bottom: 20px;
+}
+
+.loading-state,
+.error-state {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.btn-return {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #1e3c72;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.detail-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.header-badges {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.type-badge {
+  background: #f0f4ff;
+  color: #1e3c72;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.date-badge {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.detail-header h2 {
+  font-size: 2rem;
+  margin: 0;
+  color: #222;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  background: #f9fbfd;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #eef2f6;
+  margin-bottom: 25px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1e3c72;
+}
+
+.description-section {
+  margin-bottom: 25px;
+}
+
+.description-section h3,
+.photo-section h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #444;
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  white-space: pre-wrap;
+}
+
+.photo-section {
+  margin-bottom: 30px;
+}
+
+.image-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  max-height: 450px;
+  display: flex;
+  justify-content: center;
+  background: #000;
+}
+
+.detail-photo {
+  max-width: 100%;
+  max-height: 450px;
+  object-fit: contain;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.btn-edit,
+.btn-delete {
+  flex: 1;
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-edit {
+  background: #1e3c72;
+  color: white;
+  border: none;
+}
+
+.btn-edit:hover {
+  background: #2a5298;
+}
+
+.btn-delete {
+  background: #fff0f0;
+  color: #ff4757;
+  border: 1px solid #ffd2d2;
+}
+
+.btn-delete:hover {
+  background: #ff4757;
+  color: white;
+}

@@ -1,0 +1,279 @@
+.list-container {
+  max-width: 1000px;
+  width: 95%;
+  margin: 30px auto;
+  padding: 35px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  color: #333;
+  box-sizing: border-box;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-create {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(229, 46, 113, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-create:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(229, 46, 113, 0.4);
+}
+
+.header-section h2 {
+  font-size: 2.2rem;
+  margin: 0 0 10px 0;
+  color: #1e3c72;
+}
+
+.subtitle {
+  color: #666;
+  margin: 0 0 25px 0;
+  font-size: 1rem;
+}
+
+.notification-banner {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #4caf50;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Barre de filtres */
+.filters-card {
+  display: flex;
+  gap: 20px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-item {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-item.search-box {
+  flex: 2;
+  min-width: 240px;
+}
+
+.filter-item label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.filter-item input,
+.filter-item select {
+  padding: 10px 14px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #333;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.filter-item input:focus,
+.filter-item select:focus {
+  border-color: #e52e71;
+  box-shadow: 0 0 6px rgba(229, 46, 113, 0.2);
+}
+
+.counter-info {
+  margin-bottom: 25px;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+.loading-state,
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  font-size: 1.1rem;
+}
+
+/* Grille des cartes */
+.pollutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.pollution-card {
+  background: white;
+  border: 1px solid #eaeaea;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.pollution-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #ddd;
+}
+
+.card-img-wrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.pollution-card:hover .card-img {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-badges {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.type-badge {
+  background: #f0f4ff;
+  color: #1e3c72;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.date-badge {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.card-title {
+  margin: 0 0 10px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.card-location {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0 0 12px 0;
+}
+
+.card-description {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0 0 20px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.btn-action {
+  flex: 1;
+  text-align: center;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-detail {
+  background: #1e3c72;
+  color: white;
+}
+
+.btn-detail:hover {
+  background: #2a5298;
+}
+
+.btn-edit {
+  background: #f0f0f0;
+  color: #333;
+  border-color: #ddd;
+}
+
+.btn-edit:hover {
+  background: #e4e4e4;
+}
+
+.btn-delete {
+  background: #fff0f0;
+  color: #ff4757;
+  border-color: #ffd2d2;
+}
+
+.btn-delete:hover {
+  background: #ff4757;
+  color: white;
+}
