@@ -116,3 +116,70 @@ input.ng-invalid.ng-touched {
     transform: translateY(0);
   }
 }
+
+.result-box {
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.success-box {
+  background: #e8f5e9;
+  border: 1px solid #4caf50;
+  color: #2e7d32;
+}
+
+.success-box h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.error-box {
+  background: #ffebee;
+  border: 1px solid #ef5350;
+  color: #c62828;
+}
+
+.error-box p {
+  margin: 0;
+}
+
+.result-details {
+  background: rgba(0, 0, 0, 0.04);
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.result-details pre {
+  margin: 5px 0 0 0;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.result-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.result-actions button {
+  margin-top: 0;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #5a6268;
+  box-shadow: 0 6px 15px rgba(108, 117, 125, 0.4);
+}
+

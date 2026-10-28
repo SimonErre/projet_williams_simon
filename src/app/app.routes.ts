@@ -5,6 +5,7 @@ import { PollutionForm } from './pollution-form/pollution-form';
 import { PollutionList } from './pollution-list/pollution-list';
 import { PollutionDetail } from './pollution-detail/pollution-detail';
 import { Portal } from './portal/portal';
+import { Signup } from './signup/signup';
 
 export const routes: Routes = [
   { path: '', component: Portal },
@@ -15,3 +16,4 @@ export const routes: Routes = [
   { path: 'form', component: Form },
   { path: 'home', component: Home },
 ];
+

@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { JsonPipe } from '@angular/common';
+import { Auth, UserSignUp } from '../services/auth';
 
 @Component({
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, JsonPipe],
   selector: 'app-form',
   styleUrl: './form.css',
   templateUrl: './form.html',
@@ -13,7 +15,7 @@ export class Form {
 
   private router = inject(Router);
 
-  user = {
+  user: UserSignUp = {
     login: '',
     password: '',
     confirmPassword: '',
@@ -22,9 +24,15 @@ export class Form {
     email: '',
   };
 
+  isLoading = false;
+  successMessage = '';
+  errorMessage = '';
+  responseResult: any = null;
+
   onSubmit() {
     this.router.navigate(['/home'], {
       queryParams: { prenom: this.user.prenom, nom: this.user.nom },
     });
   }
 }
+
