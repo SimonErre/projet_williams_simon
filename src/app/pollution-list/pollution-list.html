@@ -1,0 +1,109 @@
+<div class="list-container">
+  <div class="top-nav">
+    <a routerLink="/" class="back-link">← Retour à l'accueil</a>
+    <a routerLink="/pollution" class="btn-create">+ Déclarer une pollution</a>
+  </div>
+
+  <div class="header-section">
+    <h2>Gestion des Pollutions</h2>
+    <p class="subtitle">
+      Consultez, filtrez et gérez les signalements de pollutions environnementales.
+    </p>
+  </div>
+
+  @if (notification()) {
+    <div class="notification-banner">
+      {{ notification() }}
+    </div>
+  }
+
+  <!-- Section des Filtres Multi-critères -->
+  <div class="filters-card">
+    <div class="filter-item search-box">
+      <label for="search">Recherche par mot-clé :</label>
+      <input
+        type="text"
+        id="search"
+        placeholder="Titre, lieu, description..."
+        [ngModel]="searchQuery()"
+        (ngModelChange)="searchQuery.set($event)"
+      />
+    </div>
+
+    <div class="filter-item">
+      <label for="filterType">Type de pollution :</label>
+      <select id="filterType" [ngModel]="selectedType()" (ngModelChange)="selectedType.set($event)">
+        <option value="">Tous les types</option>
+        @for (type of pollutionTypes; track type) {
+          <option [value]="type">{{ type }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="filter-item">
+      <label for="sortBy">Trier par date :</label>
+      <select id="sortBy" [ngModel]="sortBy()" (ngModelChange)="sortBy.set($event)">
+        <option value="recent">Plus récentes d'abord</option>
+        <option value="ancien">Plus anciennes d'abord</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="counter-info">
+    <span
+      ><strong>{{ filteredPollutions().length }}</strong> signalement(s) trouvé(s)</span
+    >
+  </div>
+
+  <!-- État de chargement -->
+  @if (isLoading()) {
+    <div class="loading-state">
+      <p>Chargement des pollutions...</p>
+    </div>
+  } @else if (filteredPollutions().length === 0) {
+    <!-- Aucun résultat -->
+    <div class="empty-state">
+      <p>Aucune pollution ne correspond à vos critères de recherche.</p>
+    </div>
+  } @else {
+    <!-- Liste des cartes de pollutions -->
+    <div class="pollutions-grid">
+      @for (pollution of filteredPollutions(); track pollution.id) {
+        <div class="pollution-card">
+          @if (pollution.photo) {
+            <div class="card-img-wrapper">
+              <img [src]="pollution.photo" [alt]="pollution.titre" class="card-img" />
+            </div>
+          }
+
+          <div class="card-content">
+            <div class="card-badges">
+              <span class="type-badge">{{ pollution.type }}</span>
+              <span class="date-badge">{{ pollution.date | date: 'dd/MM/yyyy' }}</span>
+            </div>
+
+            <h3 class="card-title">{{ pollution.titre }}</h3>
+            <p class="card-location">📍 {{ pollution.lieu }}</p>
+            <p class="card-description">{{ pollution.description }}</p>
+
+            <div class="card-actions">
+              <a [routerLink]="['/pollutions', pollution.id]" class="btn-action btn-detail">
+                Détails
+              </a>
+              <a [routerLink]="['/pollutions/edit', pollution.id]" class="btn-action btn-edit">
+                Modifier
+              </a>
+              <button
+                type="button"
+                (click)="deletePollution(pollution.id, pollution.titre)"
+                class="btn-action btn-delete"
+              >
+                Supprimer
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

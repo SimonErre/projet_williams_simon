@@ -13,7 +13,7 @@ export class Home implements OnInit {
   private route = inject(ActivatedRoute);
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.prenom = params['prenom'] || 'Visiteur';
       this.nom = params['nom'] || '';
     });
