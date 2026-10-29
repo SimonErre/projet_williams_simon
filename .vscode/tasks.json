@@ -5,6 +5,9 @@
     {
       "type": "npm",
       "script": "start",
+      "options": {
+        "cwd": "${workspaceFolder}/Front"
+      },
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
@@ -23,6 +26,9 @@
     {
       "type": "npm",
       "script": "test",
+      "options": {
+        "cwd": "${workspaceFolder}/Front"
+      },
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
@@ -37,6 +43,15 @@
           }
         }
       }
+    },
+    {
+      "type": "npm",
+      "script": "dev",
+      "options": {
+        "cwd": "${workspaceFolder}/api"
+      },
+      "isBackground": true,
+      "problemMatcher": "$tsc"
     }
   ]
 }

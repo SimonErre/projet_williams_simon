@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { JsonPipe } from '@angular/common';
-import { Auth, UserSignUp } from '../services/auth';
+import { UserSignUp } from '../services/auth';
 
 @Component({
-  imports: [FormsModule, RouterLink, JsonPipe],
+  imports: [FormsModule, RouterLink],
   selector: 'app-form',
   styleUrl: './form.css',
   templateUrl: './form.html',

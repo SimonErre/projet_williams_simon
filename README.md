@@ -1,59 +1,79 @@
-# ProjetWilliamsSimon
+# Projet Williams Simon
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Projet web fullstack composé d'un frontend Angular et d'une API backend Node.js / Express.
 
-## Development server
+## Structure du projet
 
-To start a local development server, run:
-
-```bash
-ng serve
+```text
+projet_williams_simon/
+├── Front/      # Application frontend Angular
+└── api/        # API REST backend Node.js (Express, Sequelize, PostgreSQL)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🎨 Frontend (`Front/`)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+L'application frontend est développée avec **Angular** (SSR activé, Vitest pour les tests unitaires).
 
+### Commandes utiles
+
+Se placer dans le dossier frontend :
 ```bash
-ng generate component component-name
+cd Front
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Installation des dépendances :**
+  ```bash
+  npm install
+  ```
+- **Démarrage du serveur de développement :**
+  ```bash
+  npm start
+  # ou npx ng serve
+  ```
+  Accessible sur [http://localhost:4200](http://localhost:4200).
 
+- **Lancement des tests unitaires :**
+  ```bash
+  npm test
+  # ou npx ng test --watch=false
+  ```
+
+- **Build de production :**
+  ```bash
+  npm run build
+  ```
+
+---
+
+## ⚙️ Backend API (`api/`)
+
+L'API backend est développée en **Node.js** avec **TypeScript**, **Express** et **Sequelize** (PostgreSQL).
+
+### Commandes utiles
+
+Se placer dans le dossier backend :
 ```bash
-ng generate --help
+cd api
 ```
 
-## Building
+- **Installation des dépendances :**
+  ```bash
+  npm install
+  ```
+- **Démarrage en mode développement (hot-reload avec tsx) :**
+  ```bash
+  npm run dev
+  ```
+  Accessible sur [http://localhost:3000](http://localhost:3000).
 
-To build the project run:
+- **Build TypeScript :**
+  ```bash
+  npm run build
+  ```
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Démarrage en production (après build) :**
+  ```bash
+  npm start
+  ```

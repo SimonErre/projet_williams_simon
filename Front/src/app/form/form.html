@@ -1,6 +1,7 @@
 <div class="form-container">
   <a routerLink="/" class="back-link">← Retour à l'accueil</a>
   <h2>{{ titre }}</h2>
+
   <form (ngSubmit)="onSubmit()" #userForm="ngForm">
     <div class="form-group">
       <label for="login">Login :</label>
@@ -32,22 +33,7 @@
       @if (password.invalid && (password.dirty || password.touched)) {
         <div class="error-msg">Le mot de passe est requis (minimum 6 caractères).</div>
       }
-      <div class="result-actions">
-        <button type="button" class="btn-primary" (click)="goToHome()">Continuer vers l'accueil</button>
-        <button type="button" class="btn-secondary" (click)="resetForm()">Nouvelle inscription</button>
-      </div>
     </div>
-  } @else {
-    @if (errorMessage) {
-      <div class="result-box error-box">
-        <p><strong>Erreur :</strong> {{ errorMessage }}</p>
-        @if (responseResult) {
-          <div class="result-details">
-            <pre>{{ responseResult | json }}</pre>
-          </div>
-        }
-      </div>
-    }
 
     <div class="form-group">
       <label for="confirmPassword">Confirmation du mot de passe :</label>
@@ -122,3 +108,4 @@
     </button>
   </form>
 </div>
+
