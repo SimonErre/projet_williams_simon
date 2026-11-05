@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://pollution-api.onrender.com/api',
+  apiUrl: 'https://api-projet-williams-simon.onrender.com/api',
   mockBackend: false,
 };
