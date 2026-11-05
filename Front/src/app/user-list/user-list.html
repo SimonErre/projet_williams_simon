@@ -1,0 +1,76 @@
+<div class="user-container">
+  <div class="top-nav">
+    <a routerLink="/pollutions" class="back-link">🌍 Voir les pollutions</a>
+    <a routerLink="/signup" class="btn-create">+ Inscrire un utilisateur</a>
+  </div>
+
+  <div class="header-section">
+    <h2>Gestion des Utilisateurs</h2>
+    <p class="subtitle">
+      Consultez, recherchez et gérez les utilisateurs de l'application via l'API REST.
+    </p>
+  </div>
+
+  @if (notification()) {
+    <div class="notification-banner">
+      {{ notification() }}
+    </div>
+  }
+
+  <!-- Section de recherche -->
+  <div class="filters-card">
+    <div class="filter-item search-box">
+      <label for="userSearch">Rechercher un utilisateur :</label>
+      <input
+        type="text"
+        id="userSearch"
+        placeholder="Login, nom, prénom, email..."
+        [ngModel]="searchQuery()"
+        (ngModelChange)="searchQuery.set($event)"
+      />
+    </div>
+  </div>
+
+  <div class="counter-info">
+    <span><strong>{{ filteredUsers().length }}</strong> utilisateur(s) trouvé(s)</span>
+  </div>
+
+  <!-- État de chargement -->
+  @if (isLoading()) {
+    <div class="loading-state">
+      <p>Chargement des utilisateurs en cours...</p>
+    </div>
+  } @else if (filteredUsers().length === 0) {
+    <div class="empty-state">
+      <p>Aucun utilisateur ne correspond à votre recherche.</p>
+    </div>
+  } @else {
+    <!-- Grille des utilisateurs -->
+    <div class="users-grid">
+      @for (user of filteredUsers(); track user.id) {
+        <div class="user-card">
+          <div class="user-avatar">
+            {{ user.prenom.charAt(0).toUpperCase() }}{{ user.nom.charAt(0).toUpperCase() }}
+          </div>
+          <div class="user-info">
+            <div class="user-header">
+              <h3 class="user-name">{{ user.prenom }} {{ user.nom }}</h3>
+              <span class="user-login">&#64;{{ user.login }}</span>
+            </div>
+            <p class="user-email">✉️ {{ user.email }}</p>
+            <div class="user-footer">
+              <span class="user-id">ID #{{ user.id }}</span>
+              <button
+                type="button"
+                (click)="deleteUser(user.id, user.login)"
+                class="btn-delete"
+              >
+                Supprimer
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

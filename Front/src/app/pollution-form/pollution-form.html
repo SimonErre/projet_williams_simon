@@ -1,8 +1,6 @@
 @if (!isSubmitted()) {
   <div class="form-container">
-    <a [routerLink]="isEditMode() ? '/pollutions' : '/'" class="back-link">
-      {{ isEditMode() ? '← Retour à la liste' : "← Retour à l'accueil" }}
-    </a>
+    <a routerLink="/pollutions" class="back-link">← Retour aux pollutions</a>
     <h2>{{ isEditMode() ? 'Modifier la pollution' : 'Déclarer une pollution' }}</h2>
     <form [formGroup]="pollutionForm" (ngSubmit)="onSubmit()">
       <div class="form-group">

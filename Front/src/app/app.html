@@ -1,1 +1,61 @@
-<router-outlet />
+<div class="app-layout">
+  <header class="app-navbar">
+    <div class="navbar-container">
+      <a routerLink="/pollutions" class="navbar-brand">
+        <span class="brand-icon">🌱</span>
+        <div class="brand-info">
+          <span class="brand-title">EcoPollution</span>
+          <span class="brand-tag">TP 04 — API REST</span>
+        </div>
+      </a>
+
+      <nav class="navbar-nav">
+        <a
+          routerLink="/pollutions"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item"
+        >
+          <span class="nav-icon">🌍</span>
+          <span>Pollutions</span>
+        </a>
+
+        <a routerLink="/pollution" routerLinkActive="active" class="nav-item">
+          <span class="nav-icon">➕</span>
+          <span>Déclarer</span>
+        </a>
+
+        <a routerLink="/users" routerLinkActive="active" class="nav-item">
+          <span class="nav-icon">👥</span>
+          <span>Utilisateurs</span>
+        </a>
+
+        <a routerLink="/signup" routerLinkActive="active" class="nav-item nav-btn">
+          <span class="nav-icon">👤</span>
+          <span>Inscription</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <router-outlet />
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>
+        <strong>TP 04</strong> — Application RESTful Node.js / Express & Angular pour la gestion des pollutions et des utilisateurs
+      </p>
+      <div class="footer-nav">
+        <a routerLink="/pollutions">Gestion des pollutions</a>
+        <span>•</span>
+        <a routerLink="/pollution">Nouveau signalement</a>
+        <span>•</span>
+        <a routerLink="/users">Gestion des utilisateurs</a>
+        <span>•</span>
+        <a routerLink="/signup">Créer un compte</a>
+      </div>
+    </div>
+  </footer>
+</div>
