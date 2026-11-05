@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postbuild": "cp dist/projet_williams_simon/browser/index.csr.html dist/projet_williams_simon/browser/index.html || true",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:projet_williams_simon": "node dist/projet_williams_simon/server/server.mjs"

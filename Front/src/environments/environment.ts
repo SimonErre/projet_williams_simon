@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://mon-projet-api.onrender.com/api',
-  mockBackend: true,
+  apiUrl: 'https://api-projet-williams-simon.onrender.com/api',
+  mockBackend: false,
 };

@@ -2,7 +2,8 @@ import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { JsonPipe } from '@angular/common';
-import { Auth, UserSignUp } from '../services/auth';
+import { UserService } from '../services/user.service';
+import { UserSignUp } from '../models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,7 @@ import { Auth, UserSignUp } from '../services/auth';
   styleUrl: './signup.css',
 })
 export class Signup {
-  private authService = inject(Auth);
+  private userService = inject(UserService);
 
   user: UserSignUp = {
     login: '',
@@ -35,7 +36,7 @@ export class Signup {
 
     const { confirmPassword, ...payload } = this.user;
 
-    this.authService.signUp(payload).subscribe({
+    this.userService.createUser(payload).subscribe({
       next: (response) => {
         this.isLoading.set(false);
         this.successMessage.set('Inscription réussie !');
