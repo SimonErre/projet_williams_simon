@@ -10,6 +10,13 @@
   box-sizing: border-box;
 }
 
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
 .signup-container h2 {
   text-align: center;
   margin-top: 10px;
@@ -25,11 +32,20 @@
 }
 
 .back-link {
-  display: inline-block;
   color: #e52e71;
   text-decoration: none;
   font-weight: 500;
-  margin-bottom: 10px;
+}
+
+.users-link {
+  color: #3182ce;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.users-link:hover {
+  text-decoration: underline;
 }
 
 .form-group {
@@ -132,7 +148,28 @@ button:disabled {
   word-break: break-all;
 }
 
+.actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-link {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background: #3182ce;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btn-link:hover {
+  background: #2b6cb0;
+}
+
 .btn-action {
   background: #2e7d32;
 }
-

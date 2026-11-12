@@ -77,3 +77,18 @@ cd api
   ```bash
   npm start
   ```
+
+### Endpoints REST exposés
+
+| Entité | Méthode | Route | Description |
+| :--- | :--- | :--- | :--- |
+| **Utilisateurs** | `POST` | `/api/users` | Créer un utilisateur |
+| **Utilisateurs** | `GET` | `/api/users` | Liste des utilisateurs |
+| **Utilisateurs** | `GET` | `/api/users/:id` | Consultation d'un utilisateur par son ID |
+| **Utilisateurs** | `DELETE` | `/api/users/:id` | Suppression d'un utilisateur |
+| **Utilisateurs** | `POST` | `/api/users/login` | Authentification fictive |
+| **Pollutions** | `GET` | `/api/pollutions` | Lister toutes les pollutions |
+| **Pollutions** | `GET` | `/api/pollutions/:id` | Détails d’une pollution |
+| **Pollutions** | `POST` | `/api/pollutions` | Ajouter une pollution |
+| **Pollutions** | `PUT` | `/api/pollutions/:id` | Modifier une pollution |
+| **Pollutions** | `DELETE` | `/api/pollutions/:id` | Supprimer une pollution |

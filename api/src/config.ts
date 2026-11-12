@@ -14,11 +14,11 @@ export interface AppConfig {
 
 export const config: AppConfig = {
   BDD: {
-    host: process.env.DB_HOST || "dpg-dbhm3jqjnfac73abte3g-a",
+    host: process.env.DB_HOST || "",
     port: process.env.DB_PORT || "5432",
-    user: process.env.DB_USER || "web_cnam_db_user",
-    password: process.env.DB_PASSWORD || "9fSrX5CsO8yrRA8m7KG34EBkssalY4j1",
-    bdname: process.env.DB_NAME || "web_cnam_db"
+    user: process.env.DB_USER || "",
+    password: process.env.DB_PASSWORD || "",
+    bdname: process.env.DB_NAME || ""
   }
 };
 

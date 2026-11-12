@@ -1,19 +1,19 @@
 import { Routes } from '@angular/router';
-import { Home } from './home/home';
-import { Form } from './form/form';
 import { PollutionForm } from './pollution-form/pollution-form';
 import { PollutionList } from './pollution-list/pollution-list';
 import { PollutionDetail } from './pollution-detail/pollution-detail';
-import { Portal } from './portal/portal';
 import { Signup } from './signup/signup';
+import { UserList } from './user-list/user-list';
 
 export const routes: Routes = [
-  { path: '', component: Portal },
-  { path: 'pollution', component: PollutionForm },
+  { path: '', redirectTo: 'pollutions', pathMatch: 'full' },
   { path: 'pollutions', component: PollutionList },
+  { path: 'pollution', component: PollutionForm },
+  { path: 'pollutions/new', component: PollutionForm },
   { path: 'pollutions/edit/:id', component: PollutionForm },
   { path: 'pollutions/:id', component: PollutionDetail },
-  { path: 'form', component: Form },
-  { path: 'home', component: Home },
+  { path: 'users', component: UserList },
+  { path: 'users/new', component: Signup },
+  { path: 'signup', component: Signup },
+  { path: '**', redirectTo: 'pollutions' },
 ];
-

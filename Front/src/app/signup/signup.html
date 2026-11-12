@@ -1,18 +1,25 @@
 <div class="signup-container">
-  <a routerLink="/" class="back-link">← Retour au portail</a>
+  <div class="top-nav">
+    <a routerLink="/users" class="back-link">← Retour aux utilisateurs</a>
+    <a routerLink="/pollutions" class="users-link">🌍 Voir les pollutions</a>
+  </div>
+
   <h2>Inscription Utilisateur</h2>
-  <p class="subtitle">Exercice 02 — Interaction avec le service d'authentification</p>
+  <p class="subtitle">Gestion des utilisateurs — Interaction avec le service API REST</p>
 
   @if (successMessage()) {
     <div class="result-box success-box">
       <h3>{{ successMessage() }}</h3>
       @if (result()) {
         <div class="result-details">
-          <p><strong>Données retournées par le service :</strong></p>
+          <p><strong>Données enregistrées via l'API :</strong></p>
           <pre>{{ result() | json }}</pre>
         </div>
       }
-      <button type="button" class="btn-action" (click)="reset()">Effectuer une autre inscription</button>
+      <div class="actions-group">
+        <a routerLink="/users" class="btn-link">Consulter la liste des utilisateurs</a>
+        <button type="button" class="btn-action" (click)="reset()">Effectuer une autre inscription</button>
+      </div>
     </div>
   } @else {
     @if (errorMessage()) {
@@ -80,4 +87,3 @@
     </form>
   }
 </div>
-
