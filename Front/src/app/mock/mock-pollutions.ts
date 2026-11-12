@@ -10,6 +10,9 @@ export const INITIAL_POLLUTIONS: Pollution[] = [
     lieu: "Strasbourg - Parc de l'Orangerie",
     latitude: 48.5901,
     longitude: 7.7712,
+    valeur: 15,
+    indice: 15,
+    dangerosite: 15,
     photo:
       'https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?w=500&auto=format&fit=crop&q=60',
   },
@@ -23,6 +26,9 @@ export const INITIAL_POLLUTIONS: Pollution[] = [
     lieu: 'Forêt de la Robertsau',
     latitude: 48.6214,
     longitude: 7.7955,
+    valeur: 38,
+    indice: 38,
+    dangerosite: 38,
     photo:
       'https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=500&auto=format&fit=crop&q=60',
   },
@@ -36,6 +42,9 @@ export const INITIAL_POLLUTIONS: Pollution[] = [
     lieu: 'Port du Rhin',
     latitude: 48.5732,
     longitude: 7.7981,
+    valeur: 75,
+    indice: 75,
+    dangerosite: 75,
     photo: '',
   },
   {
@@ -48,6 +57,9 @@ export const INITIAL_POLLUTIONS: Pollution[] = [
     lieu: 'Canal du Rhône au Rhin',
     latitude: 48.5523,
     longitude: 7.7654,
+    valeur: 125,
+    indice: 125,
+    dangerosite: 125,
     photo:
       'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&auto=format&fit=crop&q=60',
   },

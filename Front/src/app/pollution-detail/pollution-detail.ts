@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PollutionService } from '../services/pollution.service';
 import { Pollution } from '../models/pollution.model';
+import { PollutionLevelPipe } from '../pipes/pollution-level.pipe';
+import { HighlightPollutionDirective } from '../directives/highlight-pollution.directive';
 
 @Component({
   selector: 'app-pollution-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, PollutionLevelPipe, HighlightPollutionDirective],
   templateUrl: './pollution-detail.html',
   styleUrl: './pollution-detail.css',
 })

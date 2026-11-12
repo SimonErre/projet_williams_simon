@@ -51,6 +51,7 @@ describe('PollutionForm', () => {
       lieu: 'Strasbourg',
       latitude: 48.5,
       longitude: 7.7,
+      valeur: 35,
       photo: '',
     });
 
@@ -76,6 +77,7 @@ describe('PollutionForm', () => {
       lieu: 'Strasbourg',
       latitude: 48.5,
       longitude: 7.7,
+      valeur: 80,
       photo: '',
     });
 

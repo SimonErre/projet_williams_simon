@@ -137,3 +137,30 @@ button:disabled {
     transform: translateY(0);
   }
 }
+
+.valeur-field-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.valeur-field-container input {
+  flex: 1;
+}
+
+.valeur-field-container .level-badge {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+.help-text {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #777;
+}

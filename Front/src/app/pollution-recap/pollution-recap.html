@@ -8,6 +8,24 @@
     <p>
       <strong>Coordonnées :</strong> {{ pollutionData.latitude }}, {{ pollutionData.longitude }}
     </p>
+    @if (pollutionData.valeur !== undefined && pollutionData.valeur !== null) {
+      <p>
+        <strong>Niveau de dangerosité :</strong>
+        <span
+          class="level-badge"
+          [appHighlightPollution]="pollutionData.valeur"
+          style="
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+          "
+        >
+          {{ pollutionData.valeur | pollutionLevel }} (Indice: {{ pollutionData.valeur }})
+        </span>
+      </p>
+    }
     <p><strong>Description :</strong></p>
     <p class="description">{{ pollutionData.description }}</p>
   </div>

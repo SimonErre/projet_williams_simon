@@ -87,6 +87,26 @@
       </div>
 
       <div class="form-group">
+        <label for="valeur">Indice de dangerosité (optionnel, 0 à 200+) :</label>
+        <div class="valeur-field-container">
+          <input type="number" id="valeur" formControlName="valeur" placeholder="Ex: 35" min="0" />
+          @if (
+            pollutionForm.get('valeur')?.value !== null &&
+            pollutionForm.get('valeur')?.value !== undefined &&
+            pollutionForm.get('valeur')?.value !== ''
+          ) {
+            <span class="level-badge" [appHighlightPollution]="pollutionForm.get('valeur')?.value">
+              Niveau : {{ pollutionForm.get('valeur')?.value | pollutionLevel }}
+            </span>
+          }
+        </div>
+        <small class="help-text">
+          0-20 : Faible (Vert clair) • 21-50 : Modérée (Jaune) • 51-100 : Élevée (Orange) • 101+ :
+          Dangereuse (Rouge)
+        </small>
+      </div>
+
+      <div class="form-group">
         <label for="photo">URL de la photo (optionnel) :</label>
         <input type="url" id="photo" formControlName="photo" />
       </div>

@@ -5,11 +5,20 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PollutionRecap } from '../pollution-recap/pollution-recap';
 import { PollutionService } from '../services/pollution.service';
 import { Pollution } from '../models/pollution.model';
+import { PollutionLevelPipe } from '../pipes/pollution-level.pipe';
+import { HighlightPollutionDirective } from '../directives/highlight-pollution.directive';
 
 @Component({
   selector: 'app-pollution-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, PollutionRecap],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    RouterLink,
+    PollutionRecap,
+    PollutionLevelPipe,
+    HighlightPollutionDirective,
+  ],
   templateUrl: './pollution-form.html',
   styleUrl: './pollution-form.css',
 })
@@ -38,6 +47,7 @@ export class PollutionForm implements OnInit {
       lieu: ['', Validators.required],
       latitude: ['', [Validators.required, Validators.min(-90), Validators.max(90)]],
       longitude: ['', [Validators.required, Validators.min(-180), Validators.max(180)]],
+      valeur: [null, [Validators.min(0)]], // Indice de dangerosité (Exercice 04)
       photo: [''], // Optionnel
     });
   }
@@ -59,6 +69,7 @@ export class PollutionForm implements OnInit {
             lieu: pollution.lieu,
             latitude: pollution.latitude,
             longitude: pollution.longitude,
+            valeur: pollution.valeur ?? null,
             photo: pollution.photo || '',
           });
           this.isLoading.set(false);
