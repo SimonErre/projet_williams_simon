@@ -8,4 +8,9 @@ export interface Pollution {
   latitude: number;
   longitude: number;
   photo?: string;
+  valeur?: number;
+  indice?: number;
+  dangerosite?: number;
+  polluant?: string;
+  ville?: string;
 }

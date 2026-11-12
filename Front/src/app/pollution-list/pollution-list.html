@@ -7,7 +7,7 @@
   <div class="header-section">
     <h2>Gestion des Pollutions</h2>
     <p class="subtitle">
-      Consultez, filtrez et gérez les signalements de pollutions environnementales via l'API REST.
+      Consultez, filtrez et gérez les signalements de pollutions environnementales.
     </p>
   </div>
 
@@ -31,12 +31,27 @@
     </div>
 
     <div class="filter-item">
-      <label for="filterType">Type de pollution :</label>
+      <label for="filterType">Type :</label>
       <select id="filterType" [ngModel]="selectedType()" (ngModelChange)="selectedType.set($event)">
         <option value="">Tous les types</option>
         @for (type of pollutionTypes; track type) {
           <option [value]="type">{{ type }}</option>
         }
+      </select>
+    </div>
+
+    <div class="filter-item">
+      <label for="filterLevel">Niveau de danger :</label>
+      <select
+        id="filterLevel"
+        [ngModel]="selectedLevel()"
+        (ngModelChange)="selectedLevel.set($event)"
+      >
+        <option value="">Tous les niveaux</option>
+        <option value="Faible">🟢 Faible (0-20)</option>
+        <option value="Modérée">🟡 Modérée (21-50)</option>
+        <option value="Élevée">🟠 Élevée (51-100)</option>
+        <option value="Dangereuse">🔴 Dangereuse (101+)</option>
       </select>
     </div>
 
@@ -79,6 +94,17 @@
           <div class="card-content">
             <div class="card-badges">
               <span class="type-badge">{{ pollution.type }}</span>
+              @if (pollution.valeur !== undefined && pollution.valeur !== null) {
+                <span
+                  class="level-badge"
+                  [appHighlightPollution]="pollution.valeur"
+                  title="Niveau de dangerosité : {{
+                    pollution.valeur | pollutionLevel: 'detailed'
+                  }}"
+                >
+                  {{ pollution.valeur | pollutionLevel }} ({{ pollution.valeur }})
+                </span>
+              }
               <span class="date-badge">{{ pollution.date | date: 'dd/MM/yyyy' }}</span>
             </div>
 

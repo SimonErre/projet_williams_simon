@@ -199,6 +199,18 @@
   text-transform: uppercase;
 }
 
+.level-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .date-badge {
   color: #888;
   font-size: 0.85rem;

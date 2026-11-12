@@ -31,6 +31,18 @@
           <span class="info-label">🌐 Coordonnées GPS :</span>
           <span class="info-value">{{ item.latitude }}° N, {{ item.longitude }}° E</span>
         </div>
+        <div class="info-block">
+          <span class="info-label">⚠️ Niveau de dangerosité :</span>
+          <span class="info-value">
+            @if (item.valeur !== undefined && item.valeur !== null) {
+              <span class="level-badge" [appHighlightPollution]="item.valeur">
+                {{ item.valeur | pollutionLevel }} (Indice: {{ item.valeur }})
+              </span>
+            } @else {
+              <span class="text-muted">Non évalué</span>
+            }
+          </span>
+        </div>
       </div>
 
       <div class="description-section">

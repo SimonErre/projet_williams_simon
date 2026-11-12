@@ -4,32 +4,38 @@ import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PollutionService } from '../services/pollution.service';
 import { Pollution } from '../models/pollution.model';
+import { PollutionLevelPipe } from '../pipes/pollution-level.pipe';
+import { HighlightPollutionDirective } from '../directives/highlight-pollution.directive';
 
 @Component({
   selector: 'app-pollution-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, PollutionLevelPipe, HighlightPollutionDirective],
   templateUrl: './pollution-list.html',
   styleUrl: './pollution-list.css',
 })
 export class PollutionList implements OnInit {
   private pollutionService = inject(PollutionService);
+  private pollutionLevelPipe = new PollutionLevelPipe();
 
   // Signaux réactifs pour l'état des données et des filtres
   pollutions = signal<Pollution[]>([]);
   searchQuery = signal<string>('');
   selectedType = signal<string>('');
+  selectedLevel = signal<string>('');
   sortBy = signal<'recent' | 'ancien'>('recent');
   isLoading = signal<boolean>(true);
   notification = signal<string | null>(null);
 
   pollutionTypes = ['Plastique', 'Chimique', 'Dépôt sauvage', 'Eau', 'Air', 'Autre'];
+  pollutionLevels = ['Faible', 'Modérée', 'Élevée', 'Dangereuse'];
 
   // Signal dérivé (computed) pour le filtrage multi-critères
   filteredPollutions = computed(() => {
     let list = this.pollutions();
     const query = this.searchQuery().trim().toLowerCase();
     const type = this.selectedType();
+    const level = this.selectedLevel();
     const sort = this.sortBy();
 
     // Filtre par recherche textuelle (titre, lieu ou description)
@@ -45,6 +51,14 @@ export class PollutionList implements OnInit {
     // Filtre par type
     if (type) {
       list = list.filter((p) => p.type === type);
+    }
+
+    // Filtre par niveau de pollution (Pipe PollutionLevelPipe)
+    if (level) {
+      list = list.filter((p) => {
+        if (p.valeur === undefined || p.valeur === null) return false;
+        return this.pollutionLevelPipe.transform(p.valeur) === level;
+      });
     }
 
     // Tri par date
