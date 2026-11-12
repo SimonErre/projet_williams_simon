@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { JsonPipe } from '@angular/common';
@@ -7,6 +7,7 @@ import { UserSignUp } from '../models/user.model';
 
 @Component({
   selector: 'app-signup',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, RouterLink, JsonPipe],
   templateUrl: './signup.html',
   styleUrl: './signup.css',

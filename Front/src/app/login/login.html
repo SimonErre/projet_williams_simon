@@ -1,0 +1,66 @@
+<div class="login-container">
+  <a routerLink="/pollutions" class="back-link">← Retour à l'accueil</a>
+
+  <h2>Connexion</h2>
+  <p class="subtitle">Accédez à votre espace sécurisé EcoPollution</p>
+
+  @if (redirectMessage()) {
+    <div class="redirect-banner">
+      <span class="icon">🔒</span>
+      <span>{{ redirectMessage() }}</span>
+    </div>
+  }
+
+  @if (errorMessage()) {
+    <div class="error-banner">
+      {{ errorMessage() }}
+    </div>
+  }
+
+  <form (ngSubmit)="onSubmit()" class="login-form">
+    <div class="form-group">
+      <label for="login">Identifiant :</label>
+      <input
+        type="text"
+        id="login"
+        name="login"
+        placeholder="Ex: admin, simon, alice"
+        [ngModel]="login()"
+        (ngModelChange)="login.set($event)"
+        required
+        autocomplete="username"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe :</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Votre mot de passe"
+        [ngModel]="password()"
+        (ngModelChange)="password.set($event)"
+        autocomplete="current-password"
+      />
+    </div>
+
+    <button type="submit" [disabled]="isLoading() || !login().trim()" class="btn-submit">
+      {{ isLoading() ? 'Connexion en cours...' : 'Se connecter' }}
+    </button>
+  </form>
+
+  <div class="demo-section">
+    <p class="demo-title">⚡ Comptes de test rapides (TP 04 / TP 05) :</p>
+    <div class="demo-buttons">
+      <button type="button" (click)="fillDemoAccount('admin')" class="btn-demo">👤 admin</button>
+      <button type="button" (click)="fillDemoAccount('simon')" class="btn-demo">👤 simon</button>
+      <button type="button" (click)="fillDemoAccount('alice')" class="btn-demo">👤 alice</button>
+    </div>
+  </div>
+
+  <div class="signup-prompt">
+    <p>Pas encore de compte ?</p>
+    <a routerLink="/signup" class="link-signup">Créer un compte utilisateur</a>
+  </div>
+</div>

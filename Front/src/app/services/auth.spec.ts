@@ -10,10 +10,7 @@ describe('Auth', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting(),
-      ],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     });
     service = TestBed.inject(Auth);
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -42,13 +39,13 @@ describe('Auth', () => {
       expect(res).toEqual(mockResponse);
     });
 
-    const expectedUrl = service.apiUrl.endsWith('/users') || service.apiUrl.endsWith('/signup')
-      ? service.apiUrl
-      : `${service.apiUrl}/signup`;
+    const expectedUrl =
+      service.apiUrl.endsWith('/users') || service.apiUrl.endsWith('/signup')
+        ? service.apiUrl
+        : `${service.apiUrl}/signup`;
     const req = httpTestingController.expectOne(expectedUrl);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(mockUser);
     req.flush(mockResponse);
   });
 });
-
