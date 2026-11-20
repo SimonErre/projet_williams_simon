@@ -1,4 +1,11 @@
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -28,6 +35,7 @@ export class PollutionForm implements OnInit, CanComponentDeactivate {
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private pollutionService = inject(PollutionService);
+  private cdr = inject(ChangeDetectorRef);
 
   pollutionForm: FormGroup;
   isSubmitted = signal<boolean>(false);
@@ -75,10 +83,12 @@ export class PollutionForm implements OnInit, CanComponentDeactivate {
             photo: pollution.photo || '',
           });
           this.isLoading.set(false);
+          this.cdr.markForCheck();
         },
         error: (err) => {
           console.error('Erreur lors de la récupération de la pollution à modifier', err);
           this.isLoading.set(false);
+          this.cdr.markForCheck();
         },
       });
     }
@@ -105,6 +115,7 @@ export class PollutionForm implements OnInit, CanComponentDeactivate {
           console.error('Erreur lors de la mise à jour', err);
           alert('Une erreur est survenue lors de la mise à jour.');
           this.isSubmitting.set(false);
+          this.cdr.markForCheck();
         },
       });
     } else {
@@ -119,6 +130,7 @@ export class PollutionForm implements OnInit, CanComponentDeactivate {
           console.error('Erreur lors de la création', err);
           alert("Une erreur est survenue lors de l'enregistrement.");
           this.isSubmitting.set(false);
+          this.cdr.markForCheck();
         },
       });
     }
@@ -131,7 +143,7 @@ export class PollutionForm implements OnInit, CanComponentDeactivate {
   canDeactivate(): boolean {
     if (this.pollutionForm.dirty && !this.isSubmitted()) {
       return confirm(
-        'Attention : vous avez des modifications non enregistrées sur ce signalement. Voulez-vous vraiment quitter ?'
+        'Attention : vous avez des modifications non enregistrées sur ce signalement. Voulez-vous vraiment quitter ?',
       );
     }
     return true;

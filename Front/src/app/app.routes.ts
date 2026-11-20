@@ -34,6 +34,7 @@ export const routes: Routes = [
   },
   {
     path: 'users/new',
+    canDeactivate: [pendingChangesGuard],
     loadComponent: () => import('./signup/signup').then((m) => m.Signup),
   },
 
@@ -44,6 +45,7 @@ export const routes: Routes = [
   },
   {
     path: 'signup',
+    canDeactivate: [pendingChangesGuard],
     loadComponent: () => import('./signup/signup').then((m) => m.Signup),
   },
 

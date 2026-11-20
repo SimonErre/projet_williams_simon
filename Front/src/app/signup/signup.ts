@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { JsonPipe } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { UserSignUp } from '../models/user.model';
+import { CanComponentDeactivate } from '../guards/pending-changes.guard';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ import { UserSignUp } from '../models/user.model';
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })
-export class Signup {
+export class Signup implements CanComponentDeactivate {
   private userService = inject(UserService);
 
   user: UserSignUp = {
@@ -52,8 +53,8 @@ export class Signup {
         this.isLoading.set(false);
         this.errorMessage.set(
           error?.error?.message ||
-          error?.message ||
-          "Une erreur est survenue lors de l'appel au service."
+            error?.message ||
+            "Une erreur est survenue lors de l'appel au service.",
         );
       },
     });
@@ -72,5 +73,20 @@ export class Signup {
     this.errorMessage.set(null);
     this.result.set(null);
   }
-}
 
+  /**
+   * Sécurisation canDeactivate (Séance 5) :
+   * Prévient la perte des données saisies en cas de navigation avant validation.
+   */
+  canDeactivate(): boolean {
+    const hasUnsavedInput = Boolean(
+      this.user.login || this.user.nom || this.user.prenom || this.user.email || this.user.password,
+    );
+    if (hasUnsavedInput && !this.successMessage()) {
+      return confirm(
+        "Attention : vous avez des données non enregistrées dans le formulaire d'inscription. Voulez-vous vraiment quitter ?",
+      );
+    }
+    return true;
+  }
+}

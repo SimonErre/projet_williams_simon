@@ -1,4 +1,12 @@
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+  DestroyRef,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PollutionService } from '../services/pollution.service';
@@ -18,20 +26,33 @@ export class PollutionDetail implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private pollutionService = inject(PollutionService);
+  private destroyRef = inject(DestroyRef);
 
   pollution = signal<Pollution | null>(null);
   isLoading = signal<boolean>(true);
   errorMessage = signal<string | null>(null);
 
   ngOnInit(): void {
-    const idParam = this.route.snapshot.paramMap.get('id');
+    if (this.route.paramMap) {
+      this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((paramMap) => {
+        this.handleIdParam(paramMap.get('id'));
+      });
+    } else {
+      this.handleIdParam(this.route.snapshot?.paramMap?.get('id'));
+    }
+  }
+
+  private handleIdParam(idParam: string | null | undefined): void {
     if (idParam) {
       const id = parseInt(idParam, 10);
-      this.loadPollution(id);
-    } else {
-      this.errorMessage.set('Identifiant de pollution manquant.');
-      this.isLoading.set(false);
+      if (!isNaN(id)) {
+        this.errorMessage.set(null);
+        this.loadPollution(id);
+        return;
+      }
     }
+    this.errorMessage.set('Identifiant de pollution manquant.');
+    this.isLoading.set(false);
   }
 
   loadPollution(id: number): void {
