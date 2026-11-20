@@ -5,7 +5,7 @@
         <span class="brand-icon">🌱</span>
         <div class="brand-info">
           <span class="brand-title">EcoPollution</span>
-          <span class="brand-tag">TP 04 — API REST</span>
+          <span class="brand-tag">TP 05 — Routes, Guards & OnPush</span>
         </div>
       </a>
 
@@ -30,10 +30,32 @@
           <span>Utilisateurs</span>
         </a>
 
-        <a routerLink="/signup" routerLinkActive="active" class="nav-item nav-btn">
-          <span class="nav-icon">👤</span>
-          <span>Inscription</span>
-        </a>
+        @if (authService.isAuthenticated()) {
+          <div
+            class="user-badge"
+            title="Connecté en tant que {{ authService.currentUser()?.login }}"
+          >
+            <span>👤</span>
+            <span
+              >{{ authService.currentUser()?.prenom }} {{ authService.currentUser()?.nom }}</span
+            >
+          </div>
+
+          <button type="button" (click)="logout()" class="btn-logout" title="Se déconnecter">
+            <span>🚪</span>
+            <span>Déconnexion</span>
+          </button>
+        } @else {
+          <a routerLink="/login" routerLinkActive="active" class="nav-item nav-btn nav-btn-login">
+            <span class="nav-icon">🔑</span>
+            <span>Connexion</span>
+          </a>
+
+          <a routerLink="/signup" routerLinkActive="active" class="nav-item nav-btn">
+            <span class="nav-icon">📝</span>
+            <span>Inscription</span>
+          </a>
+        }
       </nav>
     </div>
   </header>
@@ -45,16 +67,23 @@
   <footer class="app-footer">
     <div class="footer-content">
       <p>
-        <strong>TP 04</strong> — Application RESTful Node.js / Express & Angular pour la gestion des pollutions et des utilisateurs
+        <strong>TP 05</strong> — Application Angular sécurisée avec Route Guards (canActivate,
+        canDeactivate, canMatch), Lazy Loading et ChangeDetectionStrategy.OnPush
       </p>
       <div class="footer-nav">
         <a routerLink="/pollutions">Gestion des pollutions</a>
         <span>•</span>
-        <a routerLink="/pollution">Nouveau signalement</a>
+        <a routerLink="/pollution">Nouveau signalement (Protégé)</a>
         <span>•</span>
-        <a routerLink="/users">Gestion des utilisateurs</a>
+        <a routerLink="/users">Gestion des utilisateurs (Protégé)</a>
         <span>•</span>
-        <a routerLink="/signup">Créer un compte</a>
+        @if (authService.isAuthenticated()) {
+          <a (click)="logout()" style="cursor: pointer; color: #e53e3e">Déconnexion</a>
+        } @else {
+          <a routerLink="/login">Se connecter</a>
+          <span>•</span>
+          <a routerLink="/signup">Créer un compte</a>
+        }
       </div>
     </div>
   </footer>
