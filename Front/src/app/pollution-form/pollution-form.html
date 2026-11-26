@@ -2,125 +2,140 @@
   <div class="form-container">
     <a routerLink="/pollutions" class="back-link">← Retour aux pollutions</a>
     <h2>{{ isEditMode() ? 'Modifier la pollution' : 'Déclarer une pollution' }}</h2>
-    <form [formGroup]="pollutionForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="titre">Titre de la pollution :</label>
-        <input type="text" id="titre" formControlName="titre" />
-        @if (
-          pollutionForm.get('titre')?.invalid &&
-          (pollutionForm.get('titre')?.dirty || pollutionForm.get('titre')?.touched)
-        ) {
-          <div class="error-msg">Le titre est requis.</div>
-        }
+    @if (isLoading()) {
+      <div class="loading-state">
+        <p>Chargement des données de la pollution...</p>
       </div>
-
-      <div class="form-group">
-        <label for="type">Type de pollution :</label>
-        <select id="type" formControlName="type">
-          <option value="" disabled selected>Sélectionnez un type</option>
-          @for (type of pollutionTypes; track type) {
-            <option [value]="type">{{ type }}</option>
-          }
-        </select>
-        @if (
-          pollutionForm.get('type')?.invalid &&
-          (pollutionForm.get('type')?.dirty || pollutionForm.get('type')?.touched)
-        ) {
-          <div class="error-msg">Le type de pollution est requis.</div>
-        }
-      </div>
-
-      <div class="form-group">
-        <label for="description">Description :</label>
-        <textarea id="description" formControlName="description" rows="4"></textarea>
-        @if (
-          pollutionForm.get('description')?.invalid &&
-          (pollutionForm.get('description')?.dirty || pollutionForm.get('description')?.touched)
-        ) {
-          <div class="error-msg">La description est requise.</div>
-        }
-      </div>
-
-      <div class="form-group">
-        <label for="date">Date de l'observation :</label>
-        <input type="date" id="date" formControlName="date" />
-        @if (
-          pollutionForm.get('date')?.invalid &&
-          (pollutionForm.get('date')?.dirty || pollutionForm.get('date')?.touched)
-        ) {
-          <div class="error-msg">La date est requise.</div>
-        }
-      </div>
-
-      <div class="form-group">
-        <label for="lieu">Lieu :</label>
-        <input type="text" id="lieu" formControlName="lieu" />
-        @if (
-          pollutionForm.get('lieu')?.invalid &&
-          (pollutionForm.get('lieu')?.dirty || pollutionForm.get('lieu')?.touched)
-        ) {
-          <div class="error-msg">Le lieu est requis.</div>
-        }
-      </div>
-
-      <div class="form-group row-group">
-        <div class="col">
-          <label for="latitude">Latitude :</label>
-          <input type="number" id="latitude" formControlName="latitude" step="any" />
+    } @else {
+      <form [formGroup]="pollutionForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="titre">Titre de la pollution :</label>
+          <input type="text" id="titre" formControlName="titre" />
           @if (
-            pollutionForm.get('latitude')?.invalid &&
-            (pollutionForm.get('latitude')?.dirty || pollutionForm.get('latitude')?.touched)
+            pollutionForm.get('titre')?.invalid &&
+            (pollutionForm.get('titre')?.dirty || pollutionForm.get('titre')?.touched)
           ) {
-            <div class="error-msg">Latitude requise (entre -90 et 90).</div>
+            <div class="error-msg">Le titre est requis.</div>
           }
         </div>
-        <div class="col">
-          <label for="longitude">Longitude :</label>
-          <input type="number" id="longitude" formControlName="longitude" step="any" />
+
+        <div class="form-group">
+          <label for="type">Type de pollution :</label>
+          <select id="type" formControlName="type">
+            <option value="" disabled selected>Sélectionnez un type</option>
+            @for (type of pollutionTypes; track type) {
+              <option [value]="type">{{ type }}</option>
+            }
+          </select>
           @if (
-            pollutionForm.get('longitude')?.invalid &&
-            (pollutionForm.get('longitude')?.dirty || pollutionForm.get('longitude')?.touched)
+            pollutionForm.get('type')?.invalid &&
+            (pollutionForm.get('type')?.dirty || pollutionForm.get('type')?.touched)
           ) {
-            <div class="error-msg">Longitude requise (entre -180 et 180).</div>
+            <div class="error-msg">Le type de pollution est requis.</div>
           }
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="valeur">Indice de dangerosité (optionnel, 0 à 200+) :</label>
-        <div class="valeur-field-container">
-          <input type="number" id="valeur" formControlName="valeur" placeholder="Ex: 35" min="0" />
+        <div class="form-group">
+          <label for="description">Description :</label>
+          <textarea id="description" formControlName="description" rows="4"></textarea>
           @if (
-            pollutionForm.get('valeur')?.value !== null &&
-            pollutionForm.get('valeur')?.value !== undefined &&
-            pollutionForm.get('valeur')?.value !== ''
+            pollutionForm.get('description')?.invalid &&
+            (pollutionForm.get('description')?.dirty || pollutionForm.get('description')?.touched)
           ) {
-            <span class="level-badge" [appHighlightPollution]="pollutionForm.get('valeur')?.value">
-              Niveau : {{ pollutionForm.get('valeur')?.value | pollutionLevel }}
-            </span>
+            <div class="error-msg">La description est requise.</div>
           }
         </div>
-        <small class="help-text">
-          0-20 : Faible (Vert clair) • 21-50 : Modérée (Jaune) • 51-100 : Élevée (Orange) • 101+ :
-          Dangereuse (Rouge)
-        </small>
-      </div>
 
-      <div class="form-group">
-        <label for="photo">URL de la photo (optionnel) :</label>
-        <input type="url" id="photo" formControlName="photo" />
-      </div>
+        <div class="form-group">
+          <label for="date">Date de l'observation :</label>
+          <input type="date" id="date" formControlName="date" />
+          @if (
+            pollutionForm.get('date')?.invalid &&
+            (pollutionForm.get('date')?.dirty || pollutionForm.get('date')?.touched)
+          ) {
+            <div class="error-msg">La date est requise.</div>
+          }
+        </div>
 
-      <button type="submit" [disabled]="pollutionForm.invalid || isSubmitting()">
-        {{
-          isSubmitting()
-            ? 'Enregistrement en cours...'
-            : isEditMode()
-              ? 'Enregistrer les modifications'
-              : 'Déclarer'
-        }}
-      </button>
-    </form>
+        <div class="form-group">
+          <label for="lieu">Lieu :</label>
+          <input type="text" id="lieu" formControlName="lieu" />
+          @if (
+            pollutionForm.get('lieu')?.invalid &&
+            (pollutionForm.get('lieu')?.dirty || pollutionForm.get('lieu')?.touched)
+          ) {
+            <div class="error-msg">Le lieu est requis.</div>
+          }
+        </div>
+
+        <div class="form-group row-group">
+          <div class="col">
+            <label for="latitude">Latitude :</label>
+            <input type="number" id="latitude" formControlName="latitude" step="any" />
+            @if (
+              pollutionForm.get('latitude')?.invalid &&
+              (pollutionForm.get('latitude')?.dirty || pollutionForm.get('latitude')?.touched)
+            ) {
+              <div class="error-msg">Latitude requise (entre -90 et 90).</div>
+            }
+          </div>
+          <div class="col">
+            <label for="longitude">Longitude :</label>
+            <input type="number" id="longitude" formControlName="longitude" step="any" />
+            @if (
+              pollutionForm.get('longitude')?.invalid &&
+              (pollutionForm.get('longitude')?.dirty || pollutionForm.get('longitude')?.touched)
+            ) {
+              <div class="error-msg">Longitude requise (entre -180 et 180).</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="valeur">Indice de dangerosité (optionnel, 0 à 200+) :</label>
+          <div class="valeur-field-container">
+            <input
+              type="number"
+              id="valeur"
+              formControlName="valeur"
+              placeholder="Ex: 35"
+              min="0"
+            />
+            @if (
+              pollutionForm.get('valeur')?.value !== null &&
+              pollutionForm.get('valeur')?.value !== undefined &&
+              pollutionForm.get('valeur')?.value !== ''
+            ) {
+              <span
+                class="level-badge"
+                [appHighlightPollution]="pollutionForm.get('valeur')?.value"
+              >
+                Niveau : {{ pollutionForm.get('valeur')?.value | pollutionLevel }}
+              </span>
+            }
+          </div>
+          <small class="help-text">
+            0-20 : Faible (Vert clair) • 21-50 : Modérée (Jaune) • 51-100 : Élevée (Orange) • 101+ :
+            Dangereuse (Rouge)
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="photo">URL de la photo (optionnel) :</label>
+          <input type="url" id="photo" formControlName="photo" />
+        </div>
+
+        <button type="submit" [disabled]="pollutionForm.invalid || isSubmitting()">
+          {{
+            isSubmitting()
+              ? 'Enregistrement en cours...'
+              : isEditMode()
+                ? 'Enregistrer les modifications'
+                : 'Déclarer'
+          }}
+        </button>
+      </form>
+    }
   </div>
 } @else {
   <app-pollution-recap [pollutionData]="pollutionData()"></app-pollution-recap>

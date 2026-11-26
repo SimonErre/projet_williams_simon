@@ -1,4 +1,11 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -7,10 +14,12 @@ import { PollutionService } from '../services/pollution.service';
 import { Pollution } from '../models/pollution.model';
 import { PollutionLevelPipe } from '../pipes/pollution-level.pipe';
 import { HighlightPollutionDirective } from '../directives/highlight-pollution.directive';
+import { CanComponentDeactivate } from '../guards/pending-changes.guard';
 
 @Component({
   selector: 'app-pollution-form',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     CommonModule,
@@ -22,10 +31,11 @@ import { HighlightPollutionDirective } from '../directives/highlight-pollution.d
   templateUrl: './pollution-form.html',
   styleUrl: './pollution-form.css',
 })
-export class PollutionForm implements OnInit {
+export class PollutionForm implements OnInit, CanComponentDeactivate {
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private pollutionService = inject(PollutionService);
+  private cdr = inject(ChangeDetectorRef);
 
   pollutionForm: FormGroup;
   isSubmitted = signal<boolean>(false);
@@ -73,10 +83,12 @@ export class PollutionForm implements OnInit {
             photo: pollution.photo || '',
           });
           this.isLoading.set(false);
+          this.cdr.markForCheck();
         },
         error: (err) => {
           console.error('Erreur lors de la récupération de la pollution à modifier', err);
           this.isLoading.set(false);
+          this.cdr.markForCheck();
         },
       });
     }
@@ -103,6 +115,7 @@ export class PollutionForm implements OnInit {
           console.error('Erreur lors de la mise à jour', err);
           alert('Une erreur est survenue lors de la mise à jour.');
           this.isSubmitting.set(false);
+          this.cdr.markForCheck();
         },
       });
     } else {
@@ -117,8 +130,22 @@ export class PollutionForm implements OnInit {
           console.error('Erreur lors de la création', err);
           alert("Une erreur est survenue lors de l'enregistrement.");
           this.isSubmitting.set(false);
+          this.cdr.markForCheck();
         },
       });
     }
+  }
+
+  /**
+   * Sécurisation canDeactivate (Séance 5 - Slide 11) :
+   * Avertit l'utilisateur avant de quitter la page si le formulaire est modifié et non soumis.
+   */
+  canDeactivate(): boolean {
+    if (this.pollutionForm.dirty && !this.isSubmitted()) {
+      return confirm(
+        'Attention : vous avez des modifications non enregistrées sur ce signalement. Voulez-vous vraiment quitter ?',
+      );
+    }
+    return true;
   }
 }
